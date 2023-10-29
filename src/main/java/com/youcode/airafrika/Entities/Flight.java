@@ -10,15 +10,19 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Table(name = "flight")
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "availability")
     protected Availability availability;
-    @OneToMany
+    @OneToMany(mappedBy = "flight")
     protected List<Reservation> reservations;
-    @OneToMany
+    @OneToMany(mappedBy = "flight")
     protected List<FlightPath> flightPaths;
     @ManyToOne
+    @JoinColumn(name = "plane_id")
     protected Plane plane;
 }

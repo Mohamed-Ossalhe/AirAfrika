@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Table(name = "reservations")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +18,7 @@ public class Reservation {
     protected Passenger passenger;
     @ManyToOne
     protected Flight flight;
-    @OneToMany
+    @OneToMany(mappedBy = "reservation")
     protected List<Companion> companions;
     protected double price;
 }
