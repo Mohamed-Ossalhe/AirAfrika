@@ -7,9 +7,17 @@
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>com.youcode.airafrika.Controllers.AdminServlets.Auth.AdminServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FlightServlet</servlet-name>
+        <servlet-class>com.youcode.airafrika.Controllers.FlightServlets.FlightServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FlightServlet</servlet-name>
+        <url-pattern>/flights</url-pattern>
     </servlet-mapping>
 </web-app>

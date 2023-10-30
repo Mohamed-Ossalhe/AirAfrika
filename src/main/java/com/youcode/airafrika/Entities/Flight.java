@@ -18,11 +18,22 @@ public class Flight {
     @Enumerated(EnumType.STRING)
     @Column(name = "availability")
     protected Availability availability;
+    @Column(name = "price")
+    protected double price;
     @OneToMany(mappedBy = "flight")
     protected List<Reservation> reservations;
-    @OneToMany(mappedBy = "flight")
-    protected List<FlightPath> flightPaths;
+    @OneToOne(mappedBy = "flight")
+    protected FlightPath flightPath;
     @ManyToOne
     @JoinColumn(name = "plane_id")
     protected Plane plane;
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "id=" + id +
+                ", availability=" + availability +
+                ", plane=" + plane +
+                '}';
+    }
 }

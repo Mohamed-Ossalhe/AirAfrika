@@ -30,8 +30,9 @@ public class AdminServlet extends HttpServlet {
             if (admin1 != null){
                 session.setAttribute("admin_email", admin1.getEmail());
                 session.setAttribute("isAdminLogged", true);
-                response.sendRedirect("home.jsp");
-            }
+                response.sendRedirect("/flights?action=all");
+            }else
+                response.sendRedirect("index.jsp");
         }catch (Exception exception) {
             Logger.getLogger(getServletName()).log(Level.SEVERE, "an Error Occurred in Admin Servlet.", exception);
         }
@@ -55,7 +56,7 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        req.getRequestDispatcher("admin/index.jsp").forward(req, resp);
     }
 
     @Override

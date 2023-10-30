@@ -30,9 +30,25 @@ public class FlightPath {
     @ManyToOne
     @JoinColumn(name = "arrive_airport_id")
     protected Airport arriveAirport;
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "flight_id")
     protected Flight flight;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "class_type")
     protected ClassType classType;
     @OneToMany
     protected List<StopOver> stopOvers;
+
+    @Override
+    public String toString() {
+        return "FlightPath{" +
+                "id=" + id +
+                ", departureDate=" + departureDate +
+                ", arrivalDate=" + arrivalDate +
+                ", departureAirport=" + departureAirport +
+                ", arriveAirport=" + arriveAirport +
+                ", flight=" + flight +
+                ", classType=" + classType +
+                '}';
+    }
 }
