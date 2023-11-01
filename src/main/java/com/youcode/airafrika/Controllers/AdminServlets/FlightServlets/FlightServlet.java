@@ -1,4 +1,4 @@
-package com.youcode.airafrika.Controllers.FlightServlets;
+package com.youcode.airafrika.Controllers.AdminServlets.FlightServlets;
 import com.youcode.airafrika.Entities.*;
 import com.youcode.airafrika.Enums.Availability;
 import com.youcode.airafrika.Enums.ClassType;
@@ -16,17 +16,15 @@ import java.util.logging.Logger;
 
 public class FlightServlet extends HttpServlet {
 
-    private final FlightService flightService = new FlightService();
-
     private void allFlights(HttpServletRequest request, HttpServletResponse response) {
         try {
-            List<Flight> flights = flightService.getAllFlights();
+            List<Flight> flights = FlightService.getAllFlights();
             for (Flight flight: flights
                  ) {
                 System.out.println(flight.getFlightPath());
             }
             request.setAttribute("flights", flights);
-            request.getRequestDispatcher("admin/dashboard.jsp").forward(request, response);
+            request.getRequestDispatcher("/admin/dashboard.jsp").forward(request, response);
         }catch (Exception exception) {
             Logger.getLogger(getServletName()).log(Level.SEVERE, "An Error Occurred in FlightServlet - allFlights Method", exception);
         }
@@ -41,7 +39,7 @@ public class FlightServlet extends HttpServlet {
         request.setAttribute("airlines", companies);
         request.setAttribute("availabilities", Availability.values());
         request.setAttribute("classTypes", ClassType.values());
-        request.getRequestDispatcher("admin/addFlight.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/addFlight.jsp").forward(request, response);
     }
 
     private void addNewFlight(HttpServletRequest request, HttpServletResponse response) {
@@ -67,7 +65,7 @@ public class FlightServlet extends HttpServlet {
             flight.setAvailability(availability);
             flight.setPrice(Long.parseLong(price));
             flight.setPlane(plane1);
-            Flight flight1 = flightService.createFlight(flight);
+            Flight flight1 = FlightService.createFlight(flight);
 
             // flightpath
             FlightPath flightPath = new FlightPath();
@@ -79,7 +77,7 @@ public class FlightServlet extends HttpServlet {
             flightPath.setClassType(ClassType.valueOf(classType));
             FlightPathService.create(flightPath);
 
-            response.sendRedirect("/flights?action=all");
+            response.sendRedirect("/admin/flights?action=all");
         }catch(Exception exception) {
             Logger.getLogger(getServletName()).log(Level.SEVERE, "An Error Occurred in Flight Servlet - AddNewFlight Method", exception);
         }

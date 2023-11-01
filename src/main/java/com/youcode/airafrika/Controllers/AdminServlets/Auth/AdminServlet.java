@@ -14,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AdminServlet extends HttpServlet {
-    private final AdminService adminService = new AdminService();
 
     private void adminLogin(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -26,11 +25,11 @@ public class AdminServlet extends HttpServlet {
             admin.setEmail(email);
             admin.setPassword(password);
 
-            Admin admin1 = adminService.login(admin);
+            Admin admin1 = AdminService.login(admin);
             if (admin1 != null){
                 session.setAttribute("admin_email", admin1.getEmail());
                 session.setAttribute("isAdminLogged", true);
-                response.sendRedirect("/flights?action=all");
+                response.sendRedirect("/admin/flights?action=all");
             }else
                 response.sendRedirect("index.jsp");
         }catch (Exception exception) {

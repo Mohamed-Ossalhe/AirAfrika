@@ -9,13 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AdminService {
-    private AdminDao adminDao;
+    private static final AdminDao adminDao = new AdminDao();
 
-    public AdminService() {
-        adminDao = new AdminDao();
-    }
-
-    public Admin login(Admin admin) {
+    public static Admin login(Admin admin) {
         try {
             if (admin != null) {
                 Optional<Admin> admin1 = adminDao.findByEmail(admin);
@@ -28,7 +24,7 @@ public class AdminService {
                 throw new Exception("Admin Cannot be Null.");
             }
         }catch (Exception exception) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "A Admin Service Error Occurred", exception);
+            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, "A Admin Service Error Occurred", exception);
         }
         return null;
     }

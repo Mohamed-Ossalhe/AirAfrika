@@ -6,15 +6,13 @@ import com.youcode.airafrika.Entities.Flight;
 import java.util.List;
 
 public class FlightService {
-    private FlightDao flightDao;
+    private static final FlightDao flightDao = new FlightDao();
 
-    public FlightService() {flightDao = new FlightDao();}
-
-    public List<Flight> getAllFlights() throws Exception {
+    public static List<Flight> getAllFlights() throws Exception {
         return flightDao.getAll();
     }
 
-    public Flight createFlight(Flight flight) throws Exception {
+    public static Flight createFlight(Flight flight) throws Exception {
         if (flight == null)
             throw new Exception("Flight Cannot be Null");
         else
