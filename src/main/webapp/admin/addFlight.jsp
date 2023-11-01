@@ -143,7 +143,77 @@
                     </aside>
 
                     <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
+                        <form action="${pageContext.request.contextPath}/admin/flights?action=add" method="POST">
+                            <div class="shadow sm:rounded-md sm:overflow-hidden">
+                                <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
+                                    <div>
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900">Flight Information</h3>
+                                    </div>
 
+                                    <div class="grid grid-cols-6 gap-6">
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="departure_date" class="block text-sm font-medium text-gray-700">Departure Date</label>
+                                            <input type="date" name="departure_date" id="departure_date" autocomplete="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="arrival_date" class="block text-sm font-medium text-gray-700">Arrival Date</label>
+                                            <input type="date" name="arrival_date" id="arrival_date" autocomplete="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="departure_airport" class="block text-sm font-medium text-gray-700">Departure Airport</label>
+                                            <select id="departure_airport" name="departure_airport" autocomplete="departure_airport_name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <c:forEach items="${airports}" var="airport">
+                                                    <option value="${airport.id}">${airport.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="arrive_airport" class="block text-sm font-medium text-gray-700">Arrival Airport</label>
+                                            <select id="arrive_airport" name="arrive_airport" autocomplete="arrive_airport_name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <c:forEach items="${airports}" var="airport">
+                                                    <option value="${airport.id}">${airport.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-span-6">
+                                            <label for="plane" class="block text-sm font-medium text-gray-700">Plane Model</label>
+                                            <select id="plane" name="plane" autocomplete="plane_name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <c:forEach items="${planes}" var="plane">
+                                                    <option value="${plane.id}">${plane.model}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-span-3">
+                                            <label for="availability" class="block text-sm font-medium text-gray-700">Availability</label>
+                                            <select disabled id="availability" name="availability" autocomplete="availability" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <c:forEach items="${availabilities}" var="type">
+                                                    <option value="${type}">${type}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="col-span-3">
+                                            <label for="class_type" class="block text-sm font-medium text-gray-700">Class Type</label>
+                                            <select id="class_type" name="class_type" autocomplete="class_type" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <c:forEach items="${classTypes}" var="type">
+                                                    <option value="${type}">${type}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-span-6">
+                                            <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                                            <input type="number" name="price" id="price" min="0" autocomplete="address-level2" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                    <button type="submit" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- /End replace -->
